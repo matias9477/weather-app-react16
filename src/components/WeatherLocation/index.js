@@ -18,12 +18,38 @@ const data = {
     wind: '10 m/s',
 }
 
+const data2 = {
+    temperature: 639,
+    weatherState: WINDY,
+    humidity: 666610,
+    wind: '10 m/s',
+}
+
 class WeatherLocation extends Component{
-    renter(){
+
+    constructor() {
+        super();
+        this.state = {
+            city: "Barcelona",
+            data: data,
+        };
+    }
+
+    handleUpdateClick = () =>{
+        this.setState( {
+            city: 'bs as',
+            data:data2,
+        });
+    }
+
+
+    render(){
+        const { city,data } = this.state;
         return(
             <div className="weatherLocationCont">
-            <Location city={'Barcelona'} />
+            <Location city={city} />
             <WeatherData data={data} />
+            <button onClick={this.handleUpdateClick}>Actualizar</button>
              </div>
         );
     }
