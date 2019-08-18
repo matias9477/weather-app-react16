@@ -4,25 +4,9 @@ import {api_weather} from './../../constants/api_url';
 import WeatherData from './WeatherData';
 import transformWeather from './../services/transformWeather';
 import './styles.css';
-import {
-    CLOUD,
-    CLOUDY,
-    SUN,
-    RAIN,
-    SNOW,
-    WINDY,
-} from './../../constants/weathers';
 
 
 
-
-
-const data = {
-    temperature: 69,
-    weatherState: SUN,
-    humidity: 10,
-    wind: '10 m/s',
-}
 
 
 
@@ -32,9 +16,19 @@ class WeatherLocation extends Component{
         super();
         this.state = {
             city: "Barcelona",
-            data: data,
+            data: null,
         };
     }
+
+    componentDidMount() {
+        this.handleUpdateClick();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+    }
+
+    
+    
 
 
 
@@ -58,8 +52,7 @@ class WeatherLocation extends Component{
         return(
             <div className="weatherLocationCont">
             <Location city={city} />
-            <WeatherData data={data} />
-            <button onClick={this.handleUpdateClick}>Actualizar</button>
+            {data ? <WeatherData data={data} /> : "Cargando"}
              </div>
         );
     }
