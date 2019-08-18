@@ -1,3 +1,3 @@
-API Ley = a05ce5942f2fa1fcee2ecc135dd44bb3
+API Key = a05ce5942f2fa1fcee2ecc135dd44bb3
 
 http://api.openweathermap.org/data/2.5/weather?q=[LOCATION]&appid=[KEY]
