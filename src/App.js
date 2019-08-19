@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import LocationList from './components/LocationList';
 
-function App() {
+const cities = [
+  "Cordoba, Ar",
+  "Barcelona, Es",
+  "Paris, Fr",
+  "London, UK",
+];
+
+class App extends Component {
+  render(){
   return (
     <div className="App">
-     <LocationList/>
+     <LocationList cities={cities}/>
     </div>
   );
+}
 }
 
 export default App;
