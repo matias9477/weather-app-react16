@@ -4,6 +4,7 @@ import './styles.css';
 import transformForecast from '../services/transformForecast';
 import ForecastItem from './ForecastItem/';
 import getUrlForecastByCity from './../services/getUrlForecastByCity';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 class ForecastExtended extends Component {
@@ -13,7 +14,21 @@ class ForecastExtended extends Component {
     }
 
     componentDidMount() {
-        const url_forecast= getUrlForecastByCity(this.props.city);
+        this.updateCity(this.props.city);
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.city !==this.props.city){
+            this.setState({forecastData: null})
+            this.updateCity(nextProps.city)
+        }
+    }
+    
+
+
+    updateCity = city =>{
+        const url_forecast= getUrlForecastByCity(city);
 
         fetch(url_forecast).then(
             data => (data.json())
@@ -41,7 +56,7 @@ class ForecastExtended extends Component {
     }
 
     renderProgress(){
-        return "Cargando Pronostico extendido...";
+        return <CircularProgress size={50}/>;
     }
 
 

@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {PropTypes} from 'prop-types';
 import Location from './Location';
-import getUrlWeatherByCity from './../../services/getUrlWeatherByCity';
+import getUrlWeatherByCity from '../../services/getUrlWeatherByCity';
 import WeatherData from './WeatherData';
-import transformWeather from './../../services/transformWeather';
+import transformWeather from '../../services/transformWeather';
 import './styles.css';  
 
 class WeatherLocation extends Component{
@@ -20,9 +20,6 @@ class WeatherLocation extends Component{
 
     componentDidMount() {
         this.handleUpdateClick();
-    }
-
-    componentDidUpdate(prevProps, prevState) {
     }
 
     
