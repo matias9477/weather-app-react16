@@ -5,19 +5,6 @@ import transformForecast from '../services/transformForecast';
 import ForecastItem from './ForecastItem/';
 import getUrlForecastByCity from './../services/getUrlForecastByCity';
 
-/*
-const data = {
-    temperature: 10,
-    humidity: 10,
-    weatherState: 'normal',
-    wind: 'culo'
-}
-
-const days = [
-    'Lunes','Martes', 'Miercoles', 'Jueves', 'Viernes',
-];
-
-*/
 
 class ForecastExtended extends Component {
     constructor(){
@@ -34,18 +21,23 @@ class ForecastExtended extends Component {
             weather_data => {
                 console.log(weather_data);
                 const forecastData = transformForecast(weather_data);
+                console.log(forecastData);
                 this.setState({forecastData})
             }
         );
     }
     
 
-    renderForecastItemDays(){
+    renderForecastItemDays(forecastData){
 
-        return "Render Items";
-        /*
-        return days.map( day => (<ForecastItem weekDay={day} hour={10} data={data}/>));
-        */
+        
+        return forecastData.map( forecast => (
+        <ForecastItem 
+        key={`${forecast.weekDay}${forecast.hour}`}
+        weekDay={forecast.weekDay} 
+        hour={forecast.hour} 
+        data={forecast.data}/>));
+        
     }
 
     renderProgress(){
@@ -59,7 +51,7 @@ class ForecastExtended extends Component {
         
         return (<div>
             <h2 className="forecastTittle">Pronóstico extendido para {city}</h2>
-            {forecastData ? this.renderForecastItemDays()
+            {forecastData ? this.renderForecastItemDays(forecastData)
             : this.renderProgress()}
 
             
