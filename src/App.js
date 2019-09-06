@@ -6,8 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import {Grid, Col, Row} from 'react-flexbox-grid';
 import './App.css';
-import {createStore} from 'redux';
+import {store} from './store';
 import LocationList from './components/LocationList';
+import {setCity} from './actions';
 
 const cities = [
   "Cordoba, Ar",
@@ -16,11 +17,7 @@ const cities = [
   "London, UK",
 ];
 
-const store = createStore(() => {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-// para que salga en el plugin de chrome
-const setCity = value =>(
-   {type: 'setCity', value}
-);
+
 
 
 class App extends Component {
