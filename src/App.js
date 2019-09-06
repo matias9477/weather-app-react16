@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+
 import ForecastExtended from './components/ForecastExtended';
+
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import {Grid, Col, Row} from 'react-flexbox-grid';
 import './App.css';
-import {store} from './store';
-import LocationList from './components/LocationList';
-import {setCity} from './actions';
+import LocationListContainer from './containers/LocationListContainer';
 
 const cities = [
   "Cordoba, Ar",
@@ -27,11 +27,6 @@ constructor(){
   this.state= { city: null}
 }
 
-  handleSelectedLocation = city =>{
-    this.setState({city : city});
-    console.log(`handleSelectedLocation ${city}`);
-    store.dispatch(setCity(city));
-  }
 
 
   render(){
@@ -50,8 +45,8 @@ constructor(){
       <Row>
         
         <Col xs={12} md={6}>
-        <LocationList cities={cities} 
-          onSelectedLocation={this.handleSelectedLocation} />
+        <LocationListContainer cities={cities} 
+          />
         </Col>
 
         <Col xs={12} md={6}>
@@ -76,5 +71,10 @@ constructor(){
   );
 }
 }
+
+
+
+
+
 
 export default App;
