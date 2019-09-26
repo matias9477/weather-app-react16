@@ -1,4 +1,5 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
+import thunk from 'redux-thunk';
 import {city} from './../reducers/city';
 
 const initialState = {
@@ -6,7 +7,7 @@ const initialState = {
 };
 
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose;
 
-export const store = createStore(city, initialState,
-window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export const store = createStore(city, initialState, composeEnhancers(applyMiddleware(thunk)));
 // para que salga en el plugin de chrome
