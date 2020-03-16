@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {getForecastDataFromCities} from './../reducers/cities';
+import {getForecastDataFromCities, getCity} from './../reducers';
 import ForecastExtended from './../components/ForecastExtended';
 
 class ForecastExtendedContainer extends Component {
     render() {
-        const {city, forecastData} = this.props;
+        const {city, forecastData} = this.props; //aca me traigo lo que inyecte al props con destructuring
         return (
             city &&
                 <ForecastExtended city={city} forecastData={forecastData} />
@@ -20,6 +20,6 @@ ForecastExtendedContainer.propTypes = {
 
 };
 
-const mapStateToProps = state =>({ city: state.city, forecastData: getForecastDataFromCities(state.cities, state.city)});
+const mapStateToProps = state =>({ city: getCity(state), forecastData: getForecastDataFromCities(state) });
 
 export default connect(mapStateToProps,null)(ForecastExtendedContainer);
